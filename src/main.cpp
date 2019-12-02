@@ -1,17 +1,9 @@
-#include "test.h"
-#include "utilities.cpp"
-
-#include "symbolMap.cpp"
-#include "codeMap.cpp"
-#include "symbolBlockMap.cpp"
-
-
-
-
-
-
-
-
+#include "ANSI_include.h"
+#include "symbolMap.h"
+#include "codeMap.h"
+#include "symbolBlockMap.h"
+#include "utilities.h"
+#include "defines.h"
 
 
 int main() {

@@ -1,13 +1,12 @@
-#include "test.h"
-#include "utilities.cpp"
+#include "symbolMap.h"
 
-void readSymbolMap(vector<symbolBlock>& mainVector);
-void writeSymbolMap(const vector<symbolBlock>& mainVector);
+#include "utilities.h"
 
-// ====================================================================================================
 
 void readSymbolMap(vector<symbolBlock>& mainVector) {	// .MAP file --> Vector
-
+	string inFileName = "GPVE01 text1.map";
+	string outFileName = "testOutput.txt";
+	
 	ifstream inFile;			// InFile Stream
 	int filePos;				// File position backup
 	string strDummy;			// Used to check for UNUSED symbols
@@ -87,14 +86,14 @@ void readSymbolMap(vector<symbolBlock>& mainVector) {	// .MAP file --> Vector
 }
 
 void writeSymbolMap(const vector<symbolBlock>& mainVector) {	// Vector --> .MAP file
+		string inFileName = "GPVE01 text1.map";
+	string outFileName = "testOutput.txt";
 	
 	ofstream outFile;			// OutFile Stream
 
 	outFile.open( outFileName.c_str() );
-	
-	std::cout ;
 
-	for (int blockCount = 0; blockCount <= ( mainVector.size() - 1 ); blockCount++ ) {
+	for ( unsigned int blockCount = 0; blockCount <= ( mainVector.size() - 1 ); blockCount++ ) {
 	
 		if ( mainVector[blockCount].unusedFlag == true ) {
 			

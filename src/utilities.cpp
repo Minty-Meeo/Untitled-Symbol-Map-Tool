@@ -1,11 +1,10 @@
-#ifndef utilities_cpp
-#define utilities_cpp
-#include "test.h"
+#include "utilities.h"
 
-unsigned int stringToHex( const char cstring[], unsigned int strLength );
-unsigned int asciiToInt( char asciiChar );
-void ignoreAll( char ignoredChar, ifstream& inFile );
+
 void removeCarriageReturns(  ) {
+	string inFileName = "GPVE01 text1.map";
+	string outFileName = "testOutput.txt";
+	
 	ifstream inFile;
 	inFile.open( inFileName.c_str(), std::ios::binary );
 	ofstream outFile;
@@ -34,8 +33,6 @@ void removeCarriageReturns(  ) {
 //		inFile.ignore(1);
 //}
 
-// ====================================================================================================
-
 void ignoreAll( char ignoredChar, ifstream& inFile ) {
 	while (true) {
 		if (inFile.peek() == ignoredChar)
@@ -53,7 +50,7 @@ unsigned int stringToHex( const char cstring[], unsigned int strLength ) {
 	int accumulator = 0;	// Reset Accumulator
 	strLength -= 1;			// Modify for Zero-Based Numbering
 
-	for ( int i = 0; i <= strLength; i++ ) {
+	for ( unsigned int i = 0; i <= strLength; i++ ) {
 		accumulator
 			+= ( asciiToInt( cstring[ strLength - i ] )		// Convert ASCII character to real hexadecimal.
 			* pow( 16, i ));								// Multiply real hexadecimal to match digit place.
@@ -100,5 +97,3 @@ unsigned int asciiToInt( char asciiChar ) {
 			return 5318008;
 	}
 }
-
-#endif /* utilities.cpp */

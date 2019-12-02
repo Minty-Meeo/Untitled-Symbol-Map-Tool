@@ -1,15 +1,14 @@
-#include "test.h"
-#include "utilities.cpp"
+#include "codeMap.h"
+
+#include "utilities.h"
 
 const unsigned int readBlockTitleLength = 30;
 unsigned int writeBlockTitleLength = 30;
 
-void readCodeMap(vector<symbolBlock>& mainVector);
-void writeCodeMap(const vector<symbolBlock>& mainVector);
-
-// ====================================================================================================
-
 void readCodeMap(vector<symbolBlock>& mainVector) {
+	string inFileName = "GPVE01 text1.map";
+	string outFileName = "testOutput.txt";
+	
 	ifstream inFile;
 	string dummy;
 	std::streampos filePos;
@@ -71,13 +70,16 @@ void readCodeMap(vector<symbolBlock>& mainVector) {
 }
 
 void writeCodeMap(const vector<symbolBlock>& mainVector) {
+	string inFileName = "GPVE01 text1.map";
+	string outFileName = "testOutput.txt";
+	
 	ofstream outFile;			// OutFile Stream
 	
 	outFile.open( outFileName.c_str() );
 	
-	for (int blockCount = 0; blockCount <= ( mainVector.size() - 1 ); blockCount++) {	// Vector --> Code Map
+	for (unsigned int blockCount = 0; blockCount <= ( mainVector.size() - 1 ); blockCount++) {	// Vector --> Code Map
 		outFile << mainVector[blockCount].nameOf << ':' << std::endl;													// CODE BLOCK Title
-		for (int lineCount = 0; lineCount <= ( mainVector[blockCount].ppcInstruction.size() - 1 ); lineCount++ ) {
+		for (unsigned int lineCount = 0; lineCount <= ( mainVector[blockCount].ppcInstruction.size() - 1 ); lineCount++ ) {
 //			outFile << std::hex << mainVector[blockCount].virtualAddr + (lineCount * 4) << " ";								// CODE LINE Virtual Address
 //			outFile << mainVector[blockCount].nameOf.substr( 0, writeBlockTitleLength ) << " ";								// CODE LINE Title within CODE LINE
 //			for (int i = ( writeBlockTitleLength - mainVector[blockCount].nameOf.size()); i > 0; i-- )						// Fill remaining 30 characters with whitespace when needed.

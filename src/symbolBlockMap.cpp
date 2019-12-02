@@ -1,12 +1,13 @@
-#include "test.h"
-#include "utilities.cpp"
+#include "symbolBlockMap.h"
+
+#include "utilities.h"
 
 
-resizeSymbolBlock( vector<symbolBlock>& mainVector, string nameToLookFor, int amountToShift ) {
+void resizeSymbolBlock( vector<symbolBlock>& mainVector, string nameToLookFor, int amountToShift ) {
 	
 	bool foundAddressFlag = false;
 	
-	for ( int blockCount = 0; blockCount <= ( mainVector.size() - 1 ); blockCount++ ) {
+	for ( unsigned int blockCount = 0; blockCount <= ( mainVector.size() - 1 ); blockCount++ ) {
 		if ( mainVector[blockCount].unusedFlag == false ) {
 			switch (foundAddressFlag) {
 			
@@ -33,12 +34,12 @@ resizeSymbolBlock( vector<symbolBlock>& mainVector, string nameToLookFor, int am
 	
 }
 	
-makeSymbolBlockUsed( vector<symbolBlock>& mainVector, string nameToLookFor ) {
+void makeSymbolBlockUsed( vector<symbolBlock>& mainVector, string nameToLookFor ) {
 	
 	bool foundAddressFlag = false;
-	unsigned int amountToShift;
+	unsigned int amountToShift = 0;
 	
-	for ( int blockCount = 0; blockCount <= ( mainVector.size() - 1 ); blockCount++ ) {
+	for ( unsigned int blockCount = 0; blockCount <= ( mainVector.size() - 1 ); blockCount++ ) {
 	
 		switch (foundAddressFlag) {
 		
@@ -68,13 +69,13 @@ makeSymbolBlockUsed( vector<symbolBlock>& mainVector, string nameToLookFor ) {
 		std::cout << "Warning: Symbol Block not found!" << std::endl;
 }
 
-realignSymbolBlockMap( vector<symbolBlock>& mainVector ) {
+void realignSymbolBlockMap( vector<symbolBlock>& mainVector ) {
 	
 	int difference;
 	unsigned int previousStartingBack;
 	unsigned int previousVirtualBack;
 	
-	for ( int blockCount = 1; blockCount <= ( mainVector.size() - 1 ); blockCount++ ) {
+	for ( unsigned int blockCount = 1; blockCount <= ( mainVector.size() - 1 ); blockCount++ ) {
 		
 		difference = 0;
 		
@@ -97,9 +98,9 @@ realignSymbolBlockMap( vector<symbolBlock>& mainVector ) {
 
 }
 
-trimUnusedSymbols( vector<symbolBlock>& mainVector ) {
+void trimUnusedSymbols( vector<symbolBlock>& mainVector ) {
 
-	for ( int blockCount = 0; blockCount <= ( mainVector.size() - 1 ); blockCount++ ) {
+	for ( unsigned int blockCount = 0; blockCount <= ( mainVector.size() - 1 ); blockCount++ ) {
 		
 		if ( mainVector[blockCount].unusedFlag == true ) {
 			
@@ -112,9 +113,9 @@ trimUnusedSymbols( vector<symbolBlock>& mainVector ) {
 
 }
 
-trimOverlapSymbols( vector<symbolBlock>& mainVector ) {
+void trimOverlapSymbols( vector<symbolBlock>& mainVector ) {
 
-	for ( int blockCount = 0; blockCount <= ( mainVector.size() - 1 ); blockCount++ ) {
+	for ( unsigned int blockCount = 0; blockCount <= ( mainVector.size() - 1 ); blockCount++ ) {
 		
 		if ( mainVector[blockCount].alignmentSize == 1 ) {
 			
